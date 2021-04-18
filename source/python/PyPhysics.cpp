@@ -1,67 +1,68 @@
-#include "Physics.hpp"
+#include "PyPhysics.hpp"
 
 #include <structmember.h>
 
 namespace ACLIB
 {
-    PyObject* _new_(PyTypeObject* type, PyObject* args, PyObject* kwds)
+    PyObject* physics_new_(PyTypeObject* type, PyObject* args, PyObject* kwds)
     {
-        Physics* self;
-        self = reinterpret_cast<Physics*>(type->tp_alloc(type, 0));
+        PyPhysics* self;
+        self = reinterpret_cast<PyPhysics*>(type->tp_alloc(type, 0));
 
         if(self != nullptr)
         {
-            self->m_physics = Memory<AC::Physics>("Local\\acpmf_physics");
+            self->m_physics = SharedMemory<AC::Physics>(AC::PHYSICS_PAGE);
         }
         return reinterpret_cast<PyObject*>(self);
     }
 
-    void _del_(PyTypeObject* self)
+    void physics_del_(PyTypeObject* self)
     {
         self->tp_free(self);
     }
 
-    PyMemberDef PhysicsType_members[] = {
-        // {"name", T_FLOAT, offsetof(ACLIB::struct, name), 0, "doc"},
-        {nullptr}};
+    int physics_init_(PyPhysics* self, PyObject* args, PyObject* kwds)
+    {
+        return 0;
+    }
 
-    PyMethodDef PhysicsType_methods[] = {
-        // {"func_name", (PyCFunction)func, METH_NOARGS, "doc"},
-        {nullptr}};
+    PyMemberDef PhysicsType_members[] = {{nullptr}};
 
-    static PyObject* get_packetId(Physics* self, void* closure)
+    PyMethodDef PhysicsType_methods[] = {{nullptr}};
+
+    static PyObject* get_packetId(PyPhysics* self, void* closure)
     {
         return PyLong_FromLong(self->m_physics->packetId);
     }
-    static PyObject* get_gas(Physics* self, void* closure)
+    static PyObject* get_gas(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->gas);
     }
-    static PyObject* get_brake(Physics* self, void* closure)
+    static PyObject* get_brake(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->brake);
     }
-    static PyObject* get_fuel(Physics* self, void* closure)
+    static PyObject* get_fuel(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->fuel);
     }
-    static PyObject* get_gear(Physics* self, void* closure)
+    static PyObject* get_gear(PyPhysics* self, void* closure)
     {
         return PyLong_FromLong(self->m_physics->gear);
     }
-    static PyObject* get_rpm(Physics* self, void* closure)
+    static PyObject* get_rpm(PyPhysics* self, void* closure)
     {
         return PyLong_FromLong(self->m_physics->rpm);
     }
-    static PyObject* get_steerAngle(Physics* self, void* closure)
+    static PyObject* get_steerAngle(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->steerAngle);
     }
-    static PyObject* get_speedKmh(Physics* self, void* closure)
+    static PyObject* get_speedKmh(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->speedKmh);
     }
-    static PyObject* get_velocity(Physics* self, void* closure)
+    static PyObject* get_velocity(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fff]",
@@ -69,7 +70,7 @@ namespace ACLIB
             self->m_physics->velocity[1],
             self->m_physics->velocity[2]);
     }
-    static PyObject* get_accG(Physics* self, void* closure)
+    static PyObject* get_accG(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fff]",
@@ -77,7 +78,7 @@ namespace ACLIB
             self->m_physics->accG[1],
             self->m_physics->accG[2]);
     }
-    static PyObject* get_wheelSlip(Physics* self, void* closure)
+    static PyObject* get_wheelSlip(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fff]",
@@ -86,7 +87,7 @@ namespace ACLIB
             self->m_physics->wheelSlip[2],
             self->m_physics->wheelSlip[3]);
     }
-    static PyObject* get_wheelLoad(Physics* self, void* closure)
+    static PyObject* get_wheelLoad(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fff]",
@@ -95,7 +96,7 @@ namespace ACLIB
             self->m_physics->wheelLoad[2],
             self->m_physics->wheelLoad[3]);
     }
-    static PyObject* get_wheelsPressure(Physics* self, void* closure)
+    static PyObject* get_wheelsPressure(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fff]",
@@ -104,7 +105,7 @@ namespace ACLIB
             self->m_physics->wheelsPressure[2],
             self->m_physics->wheelsPressure[3]);
     }
-    static PyObject* get_wheelAngularSpeed(Physics* self, void* closure)
+    static PyObject* get_wheelAngularSpeed(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fff]",
@@ -113,7 +114,7 @@ namespace ACLIB
             self->m_physics->wheelAngularSpeed[2],
             self->m_physics->wheelAngularSpeed[3]);
     }
-    static PyObject* get_tyreWear(Physics* self, void* closure)
+    static PyObject* get_tyreWear(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fff]",
@@ -122,7 +123,7 @@ namespace ACLIB
             self->m_physics->tyreWear[2],
             self->m_physics->tyreWear[3]);
     }
-    static PyObject* get_tyreDirtyLevel(Physics* self, void* closure)
+    static PyObject* get_tyreDirtyLevel(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fff]",
@@ -131,7 +132,7 @@ namespace ACLIB
             self->m_physics->tyreDirtyLevel[2],
             self->m_physics->tyreDirtyLevel[3]);
     }
-    static PyObject* get_tyreCoreTemperature(Physics* self, void* closure)
+    static PyObject* get_tyreCoreTemperature(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fff]",
@@ -140,7 +141,7 @@ namespace ACLIB
             self->m_physics->tyreCoreTemperature[2],
             self->m_physics->tyreCoreTemperature[3]);
     }
-    static PyObject* get_camberRAD(Physics* self, void* closure)
+    static PyObject* get_camberRAD(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fff]",
@@ -149,7 +150,7 @@ namespace ACLIB
             self->m_physics->camberRAD[2],
             self->m_physics->camberRAD[3]);
     }
-    static PyObject* get_suspensionTravel(Physics* self, void* closure)
+    static PyObject* get_suspensionTravel(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fff]",
@@ -158,31 +159,31 @@ namespace ACLIB
             self->m_physics->suspensionTravel[2],
             self->m_physics->suspensionTravel[3]);
     }
-    static PyObject* get_drs(Physics* self, void* closure)
+    static PyObject* get_drs(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->drs);
     }
-    static PyObject* get_tc(Physics* self, void* closure)
+    static PyObject* get_tc(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->tc);
     }
-    static PyObject* get_heading(Physics* self, void* closure)
+    static PyObject* get_heading(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->heading);
     }
-    static PyObject* get_pitch(Physics* self, void* closure)
+    static PyObject* get_pitch(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->pitch);
     }
-    static PyObject* get_roll(Physics* self, void* closure)
+    static PyObject* get_roll(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->roll);
     }
-    static PyObject* get_cgHeight(Physics* self, void* closure)
+    static PyObject* get_cgHeight(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->cgHeight);
     }
-    static PyObject* get_carDamage(Physics* self, void* closure)
+    static PyObject* get_carDamage(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
             "[fffff]",
@@ -192,15 +193,15 @@ namespace ACLIB
             self->m_physics->carDamage[3],
             self->m_physics->carDamage[4]);
     }
-    static PyObject* get_numberOfTyresOut(Physics* self, void* closure)
+    static PyObject* get_numberOfTyresOut(PyPhysics* self, void* closure)
     {
         return PyLong_FromLong(self->m_physics->numberOfTyresOut);
     }
-    static PyObject* get_pitLimiterOn(Physics* self, void* closure)
+    static PyObject* get_pitLimiterOn(PyPhysics* self, void* closure)
     {
         return PyLong_FromLong(self->m_physics->pitLimiterOn);
     }
-    static PyObject* get_abs(Physics* self, void* closure)
+    static PyObject* get_abs(PyPhysics* self, void* closure)
     {
         return PyFloat_FromDouble(self->m_physics->abs);
     }
@@ -238,42 +239,42 @@ namespace ACLIB
         {nullptr}};
 
     PyTypeObject PhysicsType = {
-        PyVarObject_HEAD_INIT(&PyType_Type, 0) "aclib.Physics", /* tp_name */
-        sizeof(ACLIB::Physics),                                 /* tp_basicsize */
-        0,                                                      /* tp_itemsize */
-        (destructor)ACLIB::_del_,                               /* tp_dealloc */
-        0,                                                      /* tp_print */
-        nullptr,                                                /* tp_getattr */
-        nullptr,                                                /* tp_setattr */
-        nullptr,                                                /* tp_reserved */
-        nullptr,                                                /* tp_repr */
-        nullptr,                                                /* tp_as_number */
-        nullptr,                                                /* tp_as_sequence */
-        nullptr,                                                /* tp_as_mapping */
-        nullptr,                                                /* tp_hash */
-        nullptr,                                                /* tp_call */
-        nullptr,                                                /* tp_str */
-        nullptr,                                                /* tp_getattro */
-        nullptr,                                                /* tp_setattro */
-        nullptr,                                                /* tp_as_buffer */
-        Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC,                /* tp_flags */
-        nullptr,                                                /* tp_doc */
-        nullptr,                                                /* tp_traverse */
-        nullptr,                                                /* tp_clear */
-        nullptr,                                                /* tp_richcompare */
-        0,                                                      /* tp_weaklistoffset */
-        nullptr,                                                /* tp_iter */
-        nullptr,                                                /* tp_iternext */
-        PhysicsType_methods,                                    /* tp_methods */
-        PhysicsType_members,                                    /* tp_members */
-        PhysicsType_getset,                                     /* tp_getset */
-        nullptr,                                                /* tp_base */
-        nullptr,                                                /* tp_dict */
-        nullptr,                                                /* tp_descr_get */
-        nullptr,                                                /* tp_descr_set */
-        0,                                                      /* tp_dictoffset */
-        nullptr,                                                /* tp_init */
-        nullptr,                                                /* tp_alloc */
-        (newfunc)ACLIB::_new_,                                  /* tp_new */
+        PyVarObject_HEAD_INIT(&PyType_Type, 0) "aclib_plugin.Physics", /* tp_name */
+        sizeof(ACLIB::PyPhysics),                                      /* tp_basicsize */
+        0,                                                             /* tp_itemsize */
+        nullptr,                                                       /* tp_dealloc */
+        0,                                                             /* tp_print */
+        nullptr,                                                       /* tp_getattr */
+        nullptr,                                                       /* tp_setattr */
+        nullptr,                                                       /* tp_reserved */
+        nullptr,                                                       /* tp_repr */
+        nullptr,                                                       /* tp_as_number */
+        nullptr,                                                       /* tp_as_sequence */
+        nullptr,                                                       /* tp_as_mapping */
+        nullptr,                                                       /* tp_hash */
+        nullptr,                                                       /* tp_call */
+        nullptr,                                                       /* tp_str */
+        nullptr,                                                       /* tp_getattro */
+        nullptr,                                                       /* tp_setattro */
+        nullptr,                                                       /* tp_as_buffer */
+        Py_TPFLAGS_DEFAULT,                                            /* tp_flags */
+        nullptr,                                                       /* tp_doc */
+        nullptr,                                                       /* tp_traverse */
+        nullptr,                                                       /* tp_clear */
+        nullptr,                                                       /* tp_richcompare */
+        0,                                                             /* tp_weaklistoffset */
+        nullptr,                                                       /* tp_iter */
+        nullptr,                                                       /* tp_iternext */
+        PhysicsType_methods,                                           /* tp_methods */
+        PhysicsType_members,                                           /* tp_members */
+        PhysicsType_getset,                                            /* tp_getset */
+        nullptr,                                                       /* tp_base */
+        nullptr,                                                       /* tp_dict */
+        nullptr,                                                       /* tp_descr_get */
+        nullptr,                                                       /* tp_descr_set */
+        0,                                                             /* tp_dictoffset */
+        nullptr,                                                       /* tp_init */
+        nullptr,                                                       /* tp_alloc */
+        (newfunc)physics_new_,                                         /* tp_new */
     };
 }  // namespace ACLIB
