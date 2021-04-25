@@ -81,7 +81,7 @@ namespace ACLIB
     static PyObject* get_wheelSlip(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
-            "[fff]",
+            "[ffff]",
             self->m_physics->wheelSlip[0],
             self->m_physics->wheelSlip[1],
             self->m_physics->wheelSlip[2],
@@ -90,7 +90,7 @@ namespace ACLIB
     static PyObject* get_wheelLoad(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
-            "[fff]",
+            "[ffff]",
             self->m_physics->wheelLoad[0],
             self->m_physics->wheelLoad[1],
             self->m_physics->wheelLoad[2],
@@ -99,7 +99,7 @@ namespace ACLIB
     static PyObject* get_wheelsPressure(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
-            "[fff]",
+            "[ffff]",
             self->m_physics->wheelsPressure[0],
             self->m_physics->wheelsPressure[1],
             self->m_physics->wheelsPressure[2],
@@ -108,7 +108,7 @@ namespace ACLIB
     static PyObject* get_wheelAngularSpeed(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
-            "[fff]",
+            "[ffff]",
             self->m_physics->wheelAngularSpeed[0],
             self->m_physics->wheelAngularSpeed[1],
             self->m_physics->wheelAngularSpeed[2],
@@ -117,7 +117,7 @@ namespace ACLIB
     static PyObject* get_tyreWear(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
-            "[fff]",
+            "[ffff]",
             self->m_physics->tyreWear[0],
             self->m_physics->tyreWear[1],
             self->m_physics->tyreWear[2],
@@ -126,7 +126,7 @@ namespace ACLIB
     static PyObject* get_tyreDirtyLevel(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
-            "[fff]",
+            "[ffff]",
             self->m_physics->tyreDirtyLevel[0],
             self->m_physics->tyreDirtyLevel[1],
             self->m_physics->tyreDirtyLevel[2],
@@ -135,7 +135,7 @@ namespace ACLIB
     static PyObject* get_tyreCoreTemperature(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
-            "[fff]",
+            "[ffff]",
             self->m_physics->tyreCoreTemperature[0],
             self->m_physics->tyreCoreTemperature[1],
             self->m_physics->tyreCoreTemperature[2],
@@ -144,7 +144,7 @@ namespace ACLIB
     static PyObject* get_camberRAD(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
-            "[fff]",
+            "[ffff]",
             self->m_physics->camberRAD[0],
             self->m_physics->camberRAD[1],
             self->m_physics->camberRAD[2],
@@ -153,7 +153,7 @@ namespace ACLIB
     static PyObject* get_suspensionTravel(PyPhysics* self, void* closure)
     {
         return Py_BuildValue(
-            "[fff]",
+            "[ffff]",
             self->m_physics->suspensionTravel[0],
             self->m_physics->suspensionTravel[1],
             self->m_physics->suspensionTravel[2],
@@ -205,6 +205,197 @@ namespace ACLIB
     {
         return PyFloat_FromDouble(self->m_physics->abs);
     }
+    static PyObject* get_kersCharge(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->kersCharge);
+    }
+    static PyObject* get_kersInput(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->kersInput);
+    }
+    static PyObject* get_autoShifterOn(PyPhysics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_physics->autoShifterOn);
+    }
+    static PyObject* get_rideHeight(PyPhysics* self, void* closure)
+    {
+        return Py_BuildValue("[ff]", self->m_physics->rideHeight[0], self->m_physics->rideHeight[1]);
+    }
+    static PyObject* get_turboBoost(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->turboBoost);
+    }
+    static PyObject* get_ballast(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->ballast);
+    }
+    static PyObject* get_airDensity(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->airDensity);
+    }
+    static PyObject* get_airTemp(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->airTemp);
+    }
+    static PyObject* get_roadTemp(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->roadTemp);
+    }
+    static PyObject* get_localAngularVel(PyPhysics* self, void* closure)
+    {
+        return Py_BuildValue(
+            "[fff]",
+            self->m_physics->localAngularVel[0],
+            self->m_physics->localAngularVel[1],
+            self->m_physics->localAngularVel[2]);
+    }
+    static PyObject* get_finalFF(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->finalFF);
+    }
+    static PyObject* get_performanceMeter(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->performanceMeter);
+    }
+    static PyObject* get_engineBrake(PyPhysics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_physics->engineBrake);
+    }
+    static PyObject* get_ersRecoveryLevel(PyPhysics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_physics->ersRecoveryLevel);
+    }
+    static PyObject* get_ersPowerLevel(PyPhysics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_physics->ersPowerLevel);
+    }
+    static PyObject* get_ersHeatCharging(PyPhysics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_physics->ersHeatCharging);
+    }
+    static PyObject* get_ersIsCharging(PyPhysics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_physics->ersIsCharging);
+    }
+    static PyObject* get_kersCurrentKJ(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->kersCurrentKJ);
+    }
+    static PyObject* get_drsAvailable(PyPhysics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_physics->drsAvailable);
+    }
+    static PyObject* get_drsEnabled(PyPhysics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_physics->drsEnabled);
+    }
+    static PyObject* get_brakeTemp(PyPhysics* self, void* closure)
+    {
+        return Py_BuildValue(
+            "[ffff]",
+            self->m_physics->brakeTemp[0],
+            self->m_physics->brakeTemp[1],
+            self->m_physics->brakeTemp[2],
+            self->m_physics->brakeTemp[3]);
+    }
+    static PyObject* get_clutch(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->clutch);
+    }
+    static PyObject* get_tyreTempI(PyPhysics* self, void* closure)
+    {
+        return Py_BuildValue(
+            "[ffff]",
+            self->m_physics->tyreTempI[0],
+            self->m_physics->tyreTempI[1],
+            self->m_physics->tyreTempI[2],
+            self->m_physics->tyreTempI[3]);
+    }
+    static PyObject* get_tyreTempM(PyPhysics* self, void* closure)
+    {
+        return Py_BuildValue(
+            "[ffff]",
+            self->m_physics->tyreTempM[0],
+            self->m_physics->tyreTempM[1],
+            self->m_physics->tyreTempM[2],
+            self->m_physics->tyreTempM[3]);
+    }
+    static PyObject* get_tyreTempO(PyPhysics* self, void* closure)
+    {
+        return Py_BuildValue(
+            "[ffff]",
+            self->m_physics->tyreTempO[0],
+            self->m_physics->tyreTempO[1],
+            self->m_physics->tyreTempO[2],
+            self->m_physics->tyreTempO[3]);
+    }
+    static PyObject* get_isAIControlled(PyPhysics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_physics->isAIControlled);
+    }
+    static PyObject* get_tyreContactPoint(PyPhysics* self, void* closure)
+    {
+        return Py_BuildValue(
+            "[ffffffffffff]",
+            self->m_physics->tyreContactPoint[0],
+            self->m_physics->tyreContactPoint[1],
+            self->m_physics->tyreContactPoint[2],
+            self->m_physics->tyreContactPoint[3],
+            self->m_physics->tyreContactPoint[4],
+            self->m_physics->tyreContactPoint[5],
+            self->m_physics->tyreContactPoint[6],
+            self->m_physics->tyreContactPoint[7],
+            self->m_physics->tyreContactPoint[8],
+            self->m_physics->tyreContactPoint[9],
+            self->m_physics->tyreContactPoint[10],
+            self->m_physics->tyreContactPoint[11]);
+    }
+    static PyObject* get_tyreContactNormal(PyPhysics* self, void* closure)
+    {
+        return Py_BuildValue(
+            "[ffffffffffff]",
+            self->m_physics->tyreContactNormal[0],
+            self->m_physics->tyreContactNormal[1],
+            self->m_physics->tyreContactNormal[2],
+            self->m_physics->tyreContactNormal[3],
+            self->m_physics->tyreContactNormal[4],
+            self->m_physics->tyreContactNormal[5],
+            self->m_physics->tyreContactNormal[6],
+            self->m_physics->tyreContactNormal[7],
+            self->m_physics->tyreContactNormal[8],
+            self->m_physics->tyreContactNormal[9],
+            self->m_physics->tyreContactNormal[10],
+            self->m_physics->tyreContactNormal[11]);
+    }
+    static PyObject* get_tyreContactHeading(PyPhysics* self, void* closure)
+    {
+        return Py_BuildValue(
+            "[ffffffffffff]",
+            self->m_physics->tyreContactHeading[0],
+            self->m_physics->tyreContactHeading[1],
+            self->m_physics->tyreContactHeading[2],
+            self->m_physics->tyreContactHeading[3],
+            self->m_physics->tyreContactHeading[4],
+            self->m_physics->tyreContactHeading[5],
+            self->m_physics->tyreContactHeading[6],
+            self->m_physics->tyreContactHeading[7],
+            self->m_physics->tyreContactHeading[8],
+            self->m_physics->tyreContactHeading[9],
+            self->m_physics->tyreContactHeading[10],
+            self->m_physics->tyreContactHeading[11]);
+    }
+    static PyObject* get_brakeBias(PyPhysics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_physics->brakeBias);
+    }
+    static PyObject* get_localVelocity(PyPhysics* self, void* closure)
+    {
+        return Py_BuildValue(
+            "[fff]",
+            self->m_physics->localVelocity[0],
+            self->m_physics->localVelocity[1],
+            self->m_physics->localVelocity[2]);
+    }
 
     static PyGetSetDef PhysicsType_getset[] = {
         {"packetId", (getter)get_packetId, nullptr, "", nullptr},
@@ -236,11 +427,42 @@ namespace ACLIB
         {"numberOfTyresOut", (getter)get_numberOfTyresOut, nullptr, "", nullptr},
         {"pitLimiterOn", (getter)get_pitLimiterOn, nullptr, "", nullptr},
         {"abs", (getter)get_abs, nullptr, "", nullptr},
+        {"kersCharge", (getter)get_kersCharge, nullptr, "", nullptr},
+        {"kersInput", (getter)get_kersInput, nullptr, "", nullptr},
+        {"autoShifterOn", (getter)get_autoShifterOn, nullptr, "", nullptr},
+        {"rideHeight", (getter)get_rideHeight, nullptr, "", nullptr},
+        {"turboBoost", (getter)get_turboBoost, nullptr, "", nullptr},
+        {"ballast", (getter)get_ballast, nullptr, "", nullptr},
+        {"airDensity", (getter)get_airDensity, nullptr, "", nullptr},
+        {"airTemp", (getter)get_airTemp, nullptr, "", nullptr},
+        {"roadTemp", (getter)get_roadTemp, nullptr, "", nullptr},
+        {"localAngularVel", (getter)get_localAngularVel, nullptr, "", nullptr},
+        {"finalFF", (getter)get_finalFF, nullptr, "", nullptr},
+        {"performanceMeter", (getter)get_performanceMeter, nullptr, "", nullptr},
+        {"engineBrake", (getter)get_engineBrake, nullptr, "", nullptr},
+        {"ersRecoveryLevel", (getter)get_ersRecoveryLevel, nullptr, "", nullptr},
+        {"ersPowerLevel", (getter)get_ersPowerLevel, nullptr, "", nullptr},
+        {"ersHeatCharging", (getter)get_ersHeatCharging, nullptr, "", nullptr},
+        {"ersIsCharging", (getter)get_ersIsCharging, nullptr, "", nullptr},
+        {"kersCurrentKJ", (getter)get_kersCurrentKJ, nullptr, "", nullptr},
+        {"drsAvailable", (getter)get_drsAvailable, nullptr, "", nullptr},
+        {"drsEnabled", (getter)get_drsEnabled, nullptr, "", nullptr},
+        {"brakeTemp", (getter)get_brakeTemp, nullptr, "", nullptr},
+        {"clutch", (getter)get_clutch, nullptr, "", nullptr},
+        {"tyreTempI", (getter)get_tyreTempI, nullptr, "", nullptr},
+        {"tyreTempM", (getter)get_tyreTempM, nullptr, "", nullptr},
+        {"tyreTempO", (getter)get_tyreTempO, nullptr, "", nullptr},
+        {"isAIControlled", (getter)get_isAIControlled, nullptr, "", nullptr},
+        {"tyreContactPoint", (getter)get_tyreContactPoint, nullptr, "", nullptr},
+        {"tyreContactNormal", (getter)get_tyreContactNormal, nullptr, "", nullptr},
+        {"tyreContactHeading", (getter)get_tyreContactHeading, nullptr, "", nullptr},
+        {"brakeBias", (getter)get_brakeBias, nullptr, "", nullptr},
+        {"localVelocity", (getter)get_localVelocity, nullptr, "", nullptr},
         {nullptr}};
 
     PyTypeObject PhysicsType = {
-        PyVarObject_HEAD_INIT(&PyType_Type, 0) "aclib_plugin.Physics", /* tp_name */
-        sizeof(ACLIB::PyPhysics),                                      /* tp_basicsize */
+        PyVarObject_HEAD_INIT(&PyType_Type, 0) "aclib_shared_memory.Physics", /* tp_name */
+        sizeof(PyPhysics),                                             /* tp_basicsize */
         0,                                                             /* tp_itemsize */
         nullptr,                                                       /* tp_dealloc */
         0,                                                             /* tp_print */

@@ -1,5 +1,5 @@
-#ifndef ACLIB_PLUGIN_PYSTATICS_HPP
-#define ACLIB_PLUGIN_PYSTATICS_HPP
+#ifndef ACLIB_SHARED_MEMORY_PYSTATICS_HPP
+#define ACLIB_SHARED_MEMORY_PYSTATICS_HPP
 
 #include "AC.hpp"
 #include "SharedMemory.hpp"
@@ -21,4 +21,4 @@ namespace ACLIB
     extern PyTypeObject StaticsType;
 }  // namespace ACLIB
 
-#endif  // ACLIB_PLUGIN_PYSTATICS_HPP
+#endif  // ACLIB_SHARED_MEMORY_PYSTATICS_HPP

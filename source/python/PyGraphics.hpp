@@ -1,5 +1,5 @@
-#ifndef ACLIB_PLUGIN_PYGRAPHICS_HPP
-#define ACLIB_PLUGIN_PYGRAPHICS_HPP
+#ifndef ACLIB_SHARED_MEMORY_PYGRAPHICS_HPP
+#define ACLIB_SHARED_MEMORY_PYGRAPHICS_HPP
 
 #include "AC.hpp"
 #include "SharedMemory.hpp"
@@ -10,7 +10,8 @@ namespace ACLIB
 {
     struct PyGraphics
     {
-        PyObject_HEAD SharedMemory<AC::Graphics> m_graphics;
+        PyObject_HEAD
+        SharedMemory<AC::Graphics> m_graphics;
     };
 
     static PyObject* graphics_new_(PyTypeObject* type, PyObject* args, PyObject* kwds);
@@ -21,4 +22,4 @@ namespace ACLIB
     extern PyTypeObject GraphicsType;
 }  // namespace ACLIB
 
-#endif  // ACLIB_PLUGIN_PYGRAPHICS_HPP
+#endif  // ACLIB_SHARED_MEMORY_PYGRAPHICS_HPP

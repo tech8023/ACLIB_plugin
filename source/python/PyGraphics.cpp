@@ -42,19 +42,19 @@ namespace ACLIB
     {
         return PyUnicode_FromWideChar(
             self->m_graphics->currentTime,
-            sizeOfArray(self->m_graphics->currentTime));
+            wcslen(self->m_graphics->currentTime));
     }
     static PyObject* get_lastTime(PyGraphics* self, void* closure)
     {
-        return PyUnicode_FromWideChar(self->m_graphics->lastTime, sizeOfArray(self->m_graphics->lastTime));
+        return PyUnicode_FromWideChar(self->m_graphics->lastTime, wcslen(self->m_graphics->lastTime));
     }
     static PyObject* get_bestTime(PyGraphics* self, void* closure)
     {
-        return PyUnicode_FromWideChar(self->m_graphics->bestTime, sizeOfArray(self->m_graphics->bestTime));
+        return PyUnicode_FromWideChar(self->m_graphics->bestTime, wcslen(self->m_graphics->bestTime));
     }
     static PyObject* get_split(PyGraphics* self, void* closure)
     {
-        return PyUnicode_FromWideChar(self->m_graphics->split, sizeOfArray(self->m_graphics->split));
+        return PyUnicode_FromWideChar(self->m_graphics->split, wcslen(self->m_graphics->split));
     }
     static PyObject* get_completedLaps(PyGraphics* self, void* closure)
     {
@@ -104,7 +104,7 @@ namespace ACLIB
     {
         return PyUnicode_FromWideChar(
             self->m_graphics->tyreCompound,
-            sizeOfArray(self->m_graphics->tyreCompound));
+            wcslen(self->m_graphics->tyreCompound));
     }
     static PyObject* get_replayTimeMultiplier(PyGraphics* self, void* closure)
     {
@@ -121,6 +121,38 @@ namespace ACLIB
             self->m_graphics->carCoordinates[0],
             self->m_graphics->carCoordinates[1],
             self->m_graphics->carCoordinates[2]);
+    }
+    static PyObject* get_penaltyTime(PyGraphics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_graphics->penaltyTime);
+    }
+    static PyObject* get_flag(PyGraphics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_graphics->flag);
+    }
+    static PyObject* get_idealLineOn(PyGraphics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_graphics->idealLineOn);
+    }
+    static PyObject* get_isInPitLine(PyGraphics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_graphics->isInPitLine);
+    }
+    static PyObject* get_surfaceGrip(PyGraphics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_graphics->surfaceGrip);
+    }
+    static PyObject* get_mandatoryPitDone(PyGraphics* self, void* closure)
+    {
+        return PyLong_FromLong(self->m_graphics->mandatoryPitDone);
+    }
+    static PyObject* get_windSpeed(PyGraphics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_graphics->windSpeed);
+    }
+    static PyObject* get_windDirection(PyGraphics* self, void* closure)
+    {
+        return PyFloat_FromDouble(self->m_graphics->windDirection);
     }
 
     static PyGetSetDef GraphicsType_getset[] = {
@@ -146,10 +178,18 @@ namespace ACLIB
         {"replayTimeMultiplier", (getter)get_replayTimeMultiplier, nullptr, "", nullptr},
         {"normalizedCarPosition", (getter)get_normalizedCarPosition, nullptr, "", nullptr},
         {"carCoordinates", (getter)get_carCoordinates, nullptr, "", nullptr},
+        {"penaltyTime", (getter)get_penaltyTime, nullptr, "", nullptr},
+        {"flag", (getter)get_flag, nullptr, "", nullptr},
+        {"idealLineOn", (getter)get_idealLineOn, nullptr, "", nullptr},
+        {"isInPitLine", (getter)get_isInPitLine, nullptr, "", nullptr},
+        {"surfaceGrip", (getter)get_surfaceGrip, nullptr, "", nullptr},
+        {"mandatoryPitDone", (getter)get_mandatoryPitDone, nullptr, "", nullptr},
+        {"windSpeed", (getter)get_windSpeed, nullptr, "", nullptr},
+        {"windDirection", (getter)get_windDirection, nullptr, "", nullptr},
         {nullptr}};
 
     PyTypeObject GraphicsType = {
-        PyVarObject_HEAD_INIT(&PyType_Type, 0) "aclib_plugin.Graphics", /* tp_name */
+        PyVarObject_HEAD_INIT(&PyType_Type, 0) "aclib_shared_memory.Graphics", /* tp_name */
         sizeof(PyGraphics),                                             /* tp_basicsize */
         0,                                                              /* tp_itemsize */
         nullptr,                                                        /* tp_dealloc */

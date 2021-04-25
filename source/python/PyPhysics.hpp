@@ -1,5 +1,5 @@
-#ifndef ACLIB_PLUGIN_PYPHYSICS_HPP
-#define ACLIB_PLUGIN_PYPHYSICS_HPP
+#ifndef ACLIB_SHARED_MEMORY_PYPHYSICS_HPP
+#define ACLIB_SHARED_MEMORY_PYPHYSICS_HPP
 
 #include "AC.hpp"
 #include "SharedMemory.hpp"
@@ -23,4 +23,4 @@ namespace ACLIB
     extern PyTypeObject PhysicsType;
 }  // namespace ACLIB
 
-#endif  // ACLIB_PLUGIN_PYPHYSICS_HPP
+#endif  // ACLIB_SHARED_MEMORY_PYPHYSICS_HPP
