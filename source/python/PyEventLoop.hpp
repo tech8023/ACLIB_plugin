@@ -19,6 +19,6 @@ namespace ACLIB
     extern PyMemberDef  EventLoopType_members[];
     extern PyMethodDef  EventLoopType_methods[];
     extern PyTypeObject EventLoopType;
-}  // namespace ACLIB
+}
 
 #endif  // ACLIB_PLUGIN_PYEVENTLOOP_HPP
