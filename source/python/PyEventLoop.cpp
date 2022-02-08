@@ -4,7 +4,7 @@
 
 namespace ACLIB
 {
-    PyObject* graphics_new_(PyTypeObject* type, PyObject* args, PyObject* kwds)
+    PyObject* event_loop_new_(PyTypeObject* type, PyObject* args, PyObject* kwds)
     {
         PyEventLoop* self;
         self = reinterpret_cast<PyEventLoop*>(type->tp_alloc(type, 0));
@@ -16,7 +16,7 @@ namespace ACLIB
         return reinterpret_cast<PyObject*>(self);
     }
 
-    void graphics_del_(PyTypeObject* self)
+    void event_loop_del_(PyTypeObject* self)
     {
         self->tp_free(self);
     }
