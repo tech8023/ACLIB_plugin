@@ -1,7 +1,8 @@
-#ifndef ACLIB_PLUGIN_SHAREDMEMORY_HPP
-#define ACLIB_PLUGIN_SHAREDMEMORY_HPP
+#ifndef ACLIB_PLUGIN_MEMORY_HPP
+#define ACLIB_PLUGIN_MEMORY_HPP
 
 #include <windows.h>
+#include <handleapi.h>
 
 namespace ACLIB
 {
@@ -9,7 +10,7 @@ namespace ACLIB
      * Returns the size of an array at compile time.
      */
     template<class T, size_t N>
-    inline size_t sizeOfArray(T (&)[N])
+    constexpr size_t sizeOfArray(T (&)[N])
     {
         return N;
     }
@@ -19,14 +20,14 @@ namespace ACLIB
      * page.
      */
     template<typename T>
-    class SharedMemory
+    class Memory
     {
     private:
         HANDLE m_handle;
         T*     m_data;
 
     public:
-        explicit SharedMemory(const char* name)
+        explicit Memory(const char* name)
         {
             m_handle =
                 CreateFileMapping(INVALID_HANDLE_VALUE, nullptr, PAGE_READWRITE, 0, sizeof(T), name);
@@ -52,11 +53,11 @@ namespace ACLIB
             return m_data;
         }
 
-        ~SharedMemory()
+        ~Memory()
         {
             CloseHandle(m_handle);
         }
     };
 }  // namespace ACLIB
 
-#endif  // ACLIB_PLUGIN_SHAREDMEMORY_HPP
+#endif  // ACLIB_PLUGIN_MEMORY_HPP
