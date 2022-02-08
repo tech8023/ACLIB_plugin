@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(ACLIBSharedMemory)
+project(ACLIB_plugin)
 
 
 set(CMAKE_CXX_STANDARD 11)
@@ -21,7 +21,7 @@ set(SOURCES
         source/EventLoop.cpp
         source/EventLoop.hpp
 
-        source/python/ACLIBSharedMemory.cpp
+        source/python/ACLIB_plugin.cpp
         source/python/PyPhysics.cpp
         source/python/PyPhysics.hpp
         source/python/PyGraphics.cpp
@@ -29,10 +29,13 @@ set(SOURCES
         source/python/PyStatics.cpp
         source/python/PyStatics.hpp
         source/python/PyEventLoop.cpp
-        source/python/PyEventLoop.hpp)
+        source/python/PyEventLoop.hpp
 
-# The module
-add_library(ACLIBSharedMemory
+        source/util/Thread.cpp
+        source/util/Thread.hpp)
+
+# The plugin
+add_library(ACLIB_plugin
         ${SOURCES}
         ${PYTHON_LIBRARIES})
-target_link_libraries(ACLIBSharedMemory ${PYTHON_LIBRARIES})
+target_link_libraries(ACLIB_plugin ${PYTHON_LIBRARIES})

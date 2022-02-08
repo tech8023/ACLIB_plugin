@@ -27,11 +27,11 @@ namespace ACLIB
 
     static PyObject* get_smVersion(PyStatics* self, void* closure)
     {
-        return PyUnicode_FromWideChar(self->m_statics->smVersion, wcslen(self->m_statics->smVersion));
+        return PyUnicode_FromWideChar(self->m_statics->smVersion, sizeOfArray(self->m_statics->smVersion));
     }
     static PyObject* get_acVersion(PyStatics* self, void* closure)
     {
-        return PyUnicode_FromWideChar(self->m_statics->acVersion, wcslen(self->m_statics->acVersion));
+        return PyUnicode_FromWideChar(self->m_statics->acVersion, sizeOfArray(self->m_statics->acVersion));
     }
     static PyObject* get_numberOfSessions(PyStatics* self, void* closure)
     {
@@ -43,29 +43,29 @@ namespace ACLIB
     }
     static PyObject* get_carModel(PyStatics* self, void* closure)
     {
-        return PyUnicode_FromWideChar(self->m_statics->carModel, wcslen(self->m_statics->carModel));
+        return PyUnicode_FromWideChar(self->m_statics->carModel, sizeOfArray(self->m_statics->carModel));
     }
     static PyObject* get_track(PyStatics* self, void* closure)
     {
-        return PyUnicode_FromWideChar(self->m_statics->track, wcslen(self->m_statics->track));
+        return PyUnicode_FromWideChar(self->m_statics->track, sizeOfArray(self->m_statics->track));
     }
     static PyObject* get_playerName(PyStatics* self, void* closure)
     {
         return PyUnicode_FromWideChar(
             self->m_statics->playerName,
-            wcslen(self->m_statics->playerName));
+            sizeOfArray(self->m_statics->playerName));
     }
     static PyObject* get_playerSurname(PyStatics* self, void* closure)
     {
         return PyUnicode_FromWideChar(
-            self->m_statics->playerSurname,
-            wcslen(self->m_statics->playerSurname));
+            self->m_statics->smVersion,
+            sizeOfArray(self->m_statics->playerSurname));
     }
     static PyObject* get_playerNick(PyStatics* self, void* closure)
     {
         return PyUnicode_FromWideChar(
             self->m_statics->playerNick,
-            wcslen(self->m_statics->playerNick));
+            sizeOfArray(self->m_statics->playerNick));
     }
     static PyObject* get_sectorCount(PyStatics* self, void* closure)
     {
@@ -106,113 +106,6 @@ namespace ACLIB
             self->m_statics->tyreRadius[3]);
     }
 
-    static PyObject* get_maxTurboBoost(PyStatics* self, void* closure)
-    {
-        return PyFloat_FromDouble(self->m_statics->maxTurboBoost);
-    }
-    static PyObject* get_airTemp(PyStatics* self, void* closure)
-    {
-        return PyFloat_FromDouble(self->m_statics->airTemp);
-    }
-    static PyObject* get_roadTemp(PyStatics* self, void* closure)
-    {
-        return PyFloat_FromDouble(self->m_statics->roadTemp);
-    }
-    static PyObject* get_penaltiesEnabled(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->penaltiesEnabled);
-    }
-    static PyObject* get_aidFuelRate(PyStatics* self, void* closure)
-    {
-        return PyFloat_FromDouble(self->m_statics->aidFuelRate);
-    }
-    static PyObject* get_aidTireRate(PyStatics* self, void* closure)
-    {
-        return PyFloat_FromDouble(self->m_statics->aidTireRate);
-    }
-    static PyObject* get_aidMechanicalDamage(PyStatics* self, void* closure)
-    {
-        return PyFloat_FromDouble(self->m_statics->aidMechanicalDamage);
-    }
-    static PyObject* get_aidAllowTyreBlankets(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->aidAllowTyreBlankets);
-    }
-    static PyObject* get_aidStability(PyStatics* self, void* closure)
-    {
-        return PyFloat_FromDouble(self->m_statics->aidStability);
-    }
-    static PyObject* get_aidAutoClutch(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->aidAutoClutch);
-    }
-    static PyObject* get_aidAutoBlip(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->aidAutoBlip);
-    }
-    static PyObject* get_hasDRS(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->hasDRS);
-    }
-    static PyObject* get_hasERS(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->hasERS);
-    }
-    static PyObject* get_hasKERS(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->hasKERS);
-    }
-    static PyObject* get_kersMaxJ(PyStatics* self, void* closure)
-    {
-        return PyFloat_FromDouble(self->m_statics->kersMaxJ);
-    }
-    static PyObject* get_engineBrakeSettingsCount(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->engineBrakeSettingsCount);
-    }
-    static PyObject* get_ersPowerControllerCount(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->ersPowerControllerCount);
-    }
-    static PyObject* get_trackSPlineLength(PyStatics* self, void* closure)
-    {
-        return PyFloat_FromDouble(self->m_statics->trackSPlineLength);
-    }
-    static PyObject* get_trackConfiguration(PyStatics* self, void* closure)
-    {
-        return PyUnicode_FromWideChar(
-            self->m_statics->trackConfiguration,
-            wcslen(self->m_statics->trackConfiguration));
-    }
-    static PyObject* get_ersMaxJ(PyStatics* self, void* closure)
-    {
-        return PyFloat_FromDouble(self->m_statics->ersMaxJ);
-    }
-    static PyObject* get_isTimedRace(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->isTimedRace);
-    }
-    static PyObject* get_hasExtraLap(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->hasExtraLap);
-    }
-    static PyObject* get_carSkin(PyStatics* self, void* closure)
-    {
-        return PyUnicode_FromWideChar(self->m_statics->carSkin, wcslen(self->m_statics->carSkin));
-    }
-    static PyObject* get_reversedGridPositions(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->reversedGridPositions);
-    }
-    static PyObject* get_pitWindowStart(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->pitWindowStart);
-    }
-    static PyObject* get_pitWindowEnd(PyStatics* self, void* closure)
-    {
-        return PyLong_FromLong(self->m_statics->pitWindowEnd);
-    }
-
     static PyGetSetDef StaticsType_getset[] = {
         {"smVersion", (getter)get_smVersion, nullptr, "", nullptr},
         {"acVersion", (getter)get_acVersion, nullptr, "", nullptr},
@@ -230,36 +123,10 @@ namespace ACLIB
         {"maxFuel", (getter)get_maxFuel, nullptr, "", nullptr},
         {"suspensionMaxTravel", (getter)get_suspensionMaxTravel, nullptr, "", nullptr},
         {"tyreRadius", (getter)get_tyreRadius, nullptr, "", nullptr},
-        {"maxTurboBoost", (getter)get_maxTurboBoost, nullptr, "", nullptr},
-        {"airTemp", (getter)get_airTemp, nullptr, "", nullptr},
-        {"roadTemp", (getter)get_roadTemp, nullptr, "", nullptr},
-        {"penaltiesEnabled", (getter)get_penaltiesEnabled, nullptr, "", nullptr},
-        {"aidFuelRate", (getter)get_aidFuelRate, nullptr, "", nullptr},
-        {"aidTireRate", (getter)get_aidTireRate, nullptr, "", nullptr},
-        {"aidMechanicalDamage", (getter)get_aidMechanicalDamage, nullptr, "", nullptr},
-        {"aidAllowTyreBlankets", (getter)get_aidAllowTyreBlankets, nullptr, "", nullptr},
-        {"aidStability", (getter)get_aidStability, nullptr, "", nullptr},
-        {"aidAutoClutch", (getter)get_aidAutoClutch, nullptr, "", nullptr},
-        {"aidAutoBlip", (getter)get_aidAutoBlip, nullptr, "", nullptr},
-        {"hasDRS", (getter)get_hasDRS, nullptr, "", nullptr},
-        {"hasERS", (getter)get_hasERS, nullptr, "", nullptr},
-        {"hasKERS", (getter)get_hasKERS, nullptr, "", nullptr},
-        {"kersMaxJ", (getter)get_kersMaxJ, nullptr, "", nullptr},
-        {"engineBrakeSettingsCount", (getter)get_engineBrakeSettingsCount, nullptr, "", nullptr},
-        {"ersPowerControllerCount", (getter)get_ersPowerControllerCount, nullptr, "", nullptr},
-        {"trackSPlineLength", (getter)get_trackSPlineLength, nullptr, "", nullptr},
-        {"trackConfiguration", (getter)get_trackConfiguration, nullptr, "", nullptr},
-        {"ersMaxJ", (getter)get_ersMaxJ, nullptr, "", nullptr},
-        {"isTimedRace", (getter)get_isTimedRace, nullptr, "", nullptr},
-        {"hasExtraLap", (getter)get_hasExtraLap, nullptr, "", nullptr},
-        {"carSkin", (getter)get_carSkin, nullptr, "", nullptr},
-        {"reversedGridPositions", (getter)get_reversedGridPositions, nullptr, "", nullptr},
-        {"pitWindowStart", (getter)get_pitWindowStart, nullptr, "", nullptr},
-        {"pitWindowEnd", (getter)get_pitWindowEnd, nullptr, "", nullptr},
         {nullptr}};
 
     PyTypeObject StaticsType = {
-        PyVarObject_HEAD_INIT(&PyType_Type, 0) "aclib_shared_memory.Statics", /* tp_name */
+        PyVarObject_HEAD_INIT(&PyType_Type, 0) "aclib_plugin.Statics", /* tp_name */
         sizeof(PyStatics),                                             /* tp_basicsize */
         0,                                                             /* tp_itemsize */
         nullptr,                                                       /* tp_dealloc */

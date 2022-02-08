@@ -1,5 +1,5 @@
-#ifndef ACLIB_SHARED_MEMORY_PYEVENTLOOP_HPP
-#define ACLIB_SHARED_MEMORY_PYEVENTLOOP_HPP
+#ifndef ACLIB_PLUGIN_PYEVENTLOOP_HPP
+#define ACLIB_PLUGIN_PYEVENTLOOP_HPP
 
 #include "AC.hpp"
 #include "EventLoop.hpp"
@@ -10,8 +10,7 @@ namespace ACLIB
 {
     struct PyEventLoop
     {
-        PyObject_HEAD
-        EventLoop m_event_loop;
+        PyObject_HEAD EventLoop m_event_loop;
     };
 
     static PyObject* event_loop_new_(PyTypeObject* type, PyObject* args, PyObject* kwds);
@@ -22,4 +21,4 @@ namespace ACLIB
     extern PyTypeObject EventLoopType;
 }  // namespace ACLIB
 
-#endif  // ACLIB_SHARED_MEMORY_PYEVENTLOOP_HPP
+#endif  // ACLIB_PLUGIN_PYEVENTLOOP_HPP

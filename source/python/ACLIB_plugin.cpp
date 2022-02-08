@@ -3,8 +3,6 @@
 #include "PyPhysics.hpp"
 #include "PyStatics.hpp"
 
-std::fstream Log::stream = std::fstream("C:\\Users\\Chris\\Desktop\\f.log", std::ios::out);
-
 namespace ACLIB
 {
     static PyObject *test(PyObject *self, PyObject *args)
@@ -19,17 +17,15 @@ namespace ACLIB
 
     struct PyModuleDef aclib_module = {
         PyModuleDef_HEAD_INIT,
-        "aclib_shared_memory",
+        "aclib_plugin",
         "Assetto Corsa 'all in one' python module that provides an interface for shared memory "
         "pages.",
         -1,
         module_methods};
 
-    PyMODINIT_FUNC PyInit_aclib_shared_memory()
+    PyMODINIT_FUNC PyInit_aclib_plugin()
     {
         PyObject* module = PyModule_Create(&aclib_module);
-
-        PyEval_InitThreads();
 
         if(PyType_Ready(&PhysicsType) < 0)
         {
@@ -58,7 +54,7 @@ namespace ACLIB
         if(!module)
         {
             // err
-            printf("Could not init aclib_shared_memory module.");
+            printf("Could not init aclib_plugin module.");
         }
 
         PyModule_AddObject(module, "Physics", reinterpret_cast<PyObject*>(&PhysicsType));

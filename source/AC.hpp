@@ -1,5 +1,5 @@
-#ifndef ACLIB_SHARED_MEMORY_AC_HPP
-#define ACLIB_SHARED_MEMORY_AC_HPP
+#ifndef ACLIB_PLUGIN_AC_HPP
+#define ACLIB_PLUGIN_AC_HPP
 
 #include "ACLIB.hpp"
 
@@ -33,17 +33,6 @@ namespace AC
         PAUSE  = 3,
     };
 
-    enum AC_FLAG : Uint32
-    {
-        AC_NO_FLAG        = 0,
-        AC_BLUE_FLAG      = 1,
-        AC_YELLOW_FLAG    = 2,
-        AC_BLACK_FLAG     = 3,
-        AC_WHITE_FLAG     = 4,
-        AC_CHECKERED_FLAG = 5,
-        AC_PENALTY_FLAG   = 6
-    };
-
     struct Physics
     {
         Uint32 packetId;
@@ -75,37 +64,6 @@ namespace AC
         Uint32 numberOfTyresOut;
         Uint32 pitLimiterOn;
         float  abs;
-        float  kersCharge;
-        float  kersInput;
-        Uint32 autoShifterOn;
-        float  rideHeight[2];
-        float  turboBoost;
-        float  ballast;
-        float  airDensity;
-        float  airTemp;
-        float  roadTemp;
-        float  localAngularVel[3];
-        float  finalFF;
-        float  performanceMeter;
-        Uint32 engineBrake;
-        Uint32 ersRecoveryLevel;
-        Uint32 ersPowerLevel;
-        Uint32 ersHeatCharging;
-        Uint32 ersIsCharging;
-        float  kersCurrentKJ;
-        Uint32 drsAvailable;
-        Uint32 drsEnabled;
-        float  brakeTemp[4];
-        float  clutch;
-        float  tyreTempI[4];
-        float  tyreTempM[4];
-        float  tyreTempO[4];
-        Uint32 isAIControlled;
-        float  tyreContactPoint[12];
-        float  tyreContactNormal[12];
-        float  tyreContactHeading[12];
-        float  brakeBias;
-        float  localVelocity[3];
     };
 
     struct Graphics
@@ -132,14 +90,6 @@ namespace AC
         float      replayTimeMultiplier;
         float      normalizedCarPosition;
         float      carCoordinates[3];
-        float      penaltyTime;
-        AC_FLAG    flag;
-        Uint32     idealLineOn;
-        Uint32     isInPitLine;
-        float      surfaceGrip;
-        Uint32     mandatoryPitDone;
-        float      windSpeed;
-        float      windDirection;
     };
 
     struct Statics
@@ -164,34 +114,8 @@ namespace AC
         float  maxFuel;
         float  suspensionMaxTravel[4];
         float  tyreRadius[4];
-        float  maxTurboBoost;
-        float  airTemp;
-        float  roadTemp;
-        Uint32 penaltiesEnabled;
-        float  aidFuelRate;
-        float  aidTireRate;
-        float  aidMechanicalDamage;
-        Uint32 aidAllowTyreBlankets;
-        float  aidStability;
-        Uint32 aidAutoClutch;
-        Uint32 aidAutoBlip;
-        Uint32 hasDRS;
-        Uint32 hasERS;
-        Uint32 hasKERS;
-        float  kersMaxJ;
-        Uint32 engineBrakeSettingsCount;
-        Uint32 ersPowerControllerCount;
-        float  trackSPlineLength;
-        WChar  trackConfiguration[33];
-        float  ersMaxJ;
-        Uint32 isTimedRace;
-        Uint32 hasExtraLap;
-        WChar  carSkin[33];
-        Uint32 reversedGridPositions;
-        Uint32 pitWindowStart;
-        Uint32 pitWindowEnd;
     };
 
 }  // namespace AC
 
-#endif  // ACLIB_SHARED_MEMORY_AC_HPP
+#endif  // ACLIB_PLUGIN_AC_HPP
