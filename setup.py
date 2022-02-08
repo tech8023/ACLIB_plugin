@@ -1,18 +1,19 @@
 from distutils.core import setup, Extension
 
 extension = Extension(
-    name='aclib_plugin',
+    name='aclib',
     sources=[
-        'source/EventLoop.cpp',
         'source/python/ACLIB_plugin.cpp',
-        'source/python/PyEventLoop.cpp',
-        'source/python/PyPhysics.cpp',
-        'source/python/PyGraphics.cpp',
-        'source/python/PyStatics.cpp',
-        'source/util/Thread.cpp'
+        'source/python/Physics.cpp',
+        'source/python/Graphics.cpp',
+        'source/python/Statics.cpp',
+        'source/Memory.cpp'
     ],
-    include_dirs=['source'])
+    include_dirs=[
+        'source',
+        'source/python'
+    ])
 
-setup(name='aclib_plugin',
+setup(name='aclib',
       version='1.0',
       ext_modules=[extension])
