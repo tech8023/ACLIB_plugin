@@ -5,10 +5,15 @@
 
 namespace AC
 {
-    using Uint32 = ACLIB::Uint32;
-    using WChar  = ACLIB::WChar;
+    typedef ACLIB::Uint32 Uint32;
+    typedef ACLIB::Sint32 Sint32;
+    typedef ACLIB::WChar  WChar;
 
-    enum class AC_SESSION : Uint32
+    static const char* PHYSICS_PAGE  = "Local\\acpmf_physics";
+    static const char* GRAPHICS_PAGE = "Local\\acpmf_graphics";
+    static const char* STATICS_PAGE  = "Local\\acpmf_static";
+
+    enum AC_SESSION : Sint32
     {
         UNKNOWN     = -1,
         PRACTICE    = 0,
@@ -20,7 +25,7 @@ namespace AC
         DRAG        = 6,
     };
 
-    enum class AC_STATUS : Uint32
+    enum AC_STATUS : Uint32
     {
         OFF    = 0,
         REPLAY = 1,
@@ -30,85 +35,85 @@ namespace AC
 
     struct Physics
     {
-        Uint32 packetId               = 0;
-        float  gas                    = 0;
-        float  brake                  = 0;
-        float  fuel                   = 0;
-        Uint32 gear                   = 0;
-        Uint32 rpm                    = 0;
-        float  steerAngle             = 0;
-        float  speedKmh               = 0;
-        float  velocity[3]            = {};
-        float  accG[3]                = {};
-        float  wheelSlip[4]           = {};
-        float  wheelLoad[4]           = {};
-        float  wheelsPressure[4]      = {};
-        float  wheelAngularSpeed[4]   = {};
-        float  tyreWear[4]            = {};
-        float  tyreDirtyLevel[4]      = {};
-        float  tyreCoreTemperature[4] = {};
-        float  camberRAD[4]           = {};
-        float  suspensionTravel[4]    = {};
-        float  drs                    = 0;
-        float  tc                     = 0;
-        float  heading                = 0;
-        float  pitch                  = 0;
-        float  roll                   = 0;
-        float  cgHeight               = 0;
-        float  carDamage[5]           = {};
-        Uint32 numberOfTyresOut       = 0;
-        Uint32 pitLimiterOn           = 0;
-        float  abs                    = 0;
+        Uint32 packetId;
+        float  gas;
+        float  brake;
+        float  fuel;
+        Uint32 gear;
+        Uint32 rpm;
+        float  steerAngle;
+        float  speedKmh;
+        float  velocity[3];
+        float  accG[3];
+        float  wheelSlip[4];
+        float  wheelLoad[4];
+        float  wheelsPressure[4];
+        float  wheelAngularSpeed[4];
+        float  tyreWear[4];
+        float  tyreDirtyLevel[4];
+        float  tyreCoreTemperature[4];
+        float  camberRAD[4];
+        float  suspensionTravel[4];
+        float  drs;
+        float  tc;
+        float  heading;
+        float  pitch;
+        float  roll;
+        float  cgHeight;
+        float  carDamage[5];
+        Uint32 numberOfTyresOut;
+        Uint32 pitLimiterOn;
+        float  abs;
     };
 
     struct Graphics
     {
-        Uint32     packetId              = 0;
-        AC_STATUS  status                = AC_STATUS::OFF;
-        AC_SESSION session               = AC_SESSION::PRACTICE;
-        WChar      currentTime[15]       = {};
-        WChar      lastTime[15]          = {};
-        WChar      bestTime[15]          = {};
-        WChar      split[15]             = {};
-        Uint32     completedLaps         = 0;
-        Uint32     position              = 0;
-        Uint32     iCurrentTime          = 0;
-        Uint32     iLastTime             = 0;
-        Uint32     iBestTime             = 0;
-        float      sessionTimeLeft       = 0;
-        float      distanceTraveled      = 0;
-        Uint32     isInPit               = 0;
-        Uint32     currentSectorIndex    = 0;
-        Uint32     lastSectorTime        = 0;
-        Uint32     numberOfLaps          = 0;
-        WChar      tyreCompound[33]      = {};
-        float      replayTimeMultiplier  = 0;
-        float      normalizedCarPosition = 0;
-        float      carCoordinates[3]     = {};
+        Uint32     packetId;
+        AC_STATUS  status;
+        AC_SESSION session;
+        WChar      currentTime[15];
+        WChar      lastTime[15];
+        WChar      bestTime[15];
+        WChar      split[15];
+        Uint32     completedLaps;
+        Uint32     position;
+        Uint32     iCurrentTime;
+        Uint32     iLastTime;
+        Uint32     iBestTime;
+        float      sessionTimeLeft;
+        float      distanceTraveled;
+        Uint32     isInPit;
+        Uint32     currentSectorIndex;
+        Uint32     lastSectorTime;
+        Uint32     numberOfLaps;
+        WChar      tyreCompound[33];
+        float      replayTimeMultiplier;
+        float      normalizedCarPosition;
+        float      carCoordinates[3];
     };
 
     struct Statics
     {
-        WChar smVersion[15] = {};
-        WChar acVersion[15] = {};
+        WChar smVersion[15];
+        WChar acVersion[15];
 
         // session static info
-        Uint32 numberOfSessions  = 0;
-        Uint32 numCars           = 0;
-        WChar  carModel[33]      = {};
-        WChar  track[33]         = {};
-        WChar  playerName[33]    = {};
-        WChar  playerSurname[33] = {};
-        WChar  playerNick[33]    = {};
-        Uint32 sectorCount       = 0;
+        Uint32 numberOfSessions;
+        Uint32 numCars;
+        WChar  carModel[33];
+        WChar  track[33];
+        WChar  playerName[33];
+        WChar  playerSurname[33];
+        WChar  playerNick[33];
+        Uint32 sectorCount;
 
         // car static info
-        float  maxTorque              = 0;
-        float  maxPower               = 0;
-        Uint32 maxRpm                 = 0;
-        float  maxFuel                = 0;
-        float  suspensionMaxTravel[4] = {};
-        float  tyreRadius[4]          = {};
+        float  maxTorque;
+        float  maxPower;
+        Uint32 maxRpm;
+        float  maxFuel;
+        float  suspensionMaxTravel[4];
+        float  tyreRadius[4];
     };
 
 }  // namespace AC
